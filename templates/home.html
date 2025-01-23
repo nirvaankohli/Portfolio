@@ -157,6 +157,26 @@
       right:-.5vw;
       top: 0vh;
     }
+    #number2 {
+      opacity: inherit;
+      z-index: inherit;
+      position: relative;
+      color: #666666;
+      font-family: 'Archivo Narrow', serif;
+      font-size: .9vw;
+      right:-.5vw;
+      top: 0vh;
+    }
+    #number3 {
+      opacity: inherit;
+      z-index: inherit;
+      position: relative;
+      color: #666666;
+      font-family: 'Archivo Narrow', serif;
+      font-size: .9vw;
+      right:-.5vw;
+      top: 0vh;
+    }
     #divisions1 {
       cursor: pointer;
       top: 4vh;
@@ -164,7 +184,7 @@
       background-color: rgba(0, 0, 0, 0);
       border:rgba(0, 0, 0, 0), 0px;
       opacity: inherit;
-      z-index: inherit;
+      z-index: 20;
       height: 2.9vw;
       width: 4vw;
 
@@ -194,6 +214,7 @@
       font-family: 'Manrope', serif;
       color:rgb(20, 20, 20);
       transition: color 1s ease;
+      z-index: 20;
       
     }
     #divisions2:hover {
@@ -216,6 +237,7 @@
       font-family: 'Manrope', serif;
       color:rgb(20, 20, 20);
       transition: color 1s ease;
+      z-index: 20;
       
     }
     #divisions3:hover {
@@ -225,6 +247,8 @@
       
     }
     #box1 {
+      display:block;
+      align-content: center;
       text-align: center;
       font-family: 'Manrope', serif;
       color:#303030;
@@ -235,13 +259,15 @@
       height:0px;
       width: 100vw;
       background-color: rgb(0, 0, 0);
-      transition: height 1.5s ease, top 1.5s ease;
-      z-index: -3;
+      transition: height 1.5s ease, top 1.5s ease, color 4s ease;
+      z-index: 20;
       top:7vh;
       left: -17.5vw;
       line-height: .72;
+      transform: translateY(-50%);
     }
     #box2 {
+      display:block;
       text-align: center;
       font-family: 'Manrope', serif;
       color:#303030;
@@ -253,13 +279,16 @@
       height:0px;
       width: 100vw;
       background-color: rgb(0, 0, 0);
-      transition: height 1.5s ease, top 1.5s ease;
-      z-index: -3;
+      transition: height 1.5s ease, top 1.5s ease, color 4s ease;
+      z-index: 20;
       top:7vh;
       left: -47.5vw;
       line-height: .72;
+      transform: translateY(-50%);
+      align-content: center;
     }
     #box3 {
+      display:block;
       text-align: center;
       font-family: 'Manrope', serif;
       color:#303030;
@@ -271,11 +300,13 @@
       height:0px;
       width: 100vw;
       background-color: rgb(0, 0, 0);
-      transition: height 1.5s ease, top 1.5s ease;
-      z-index: 1;
+      transition: height 1.5s ease, top 1.5s ease, color 4s ease;
+      z-index: 20;
       top:7vh;
       left: -77.5vw;
       line-height: .72;
+      transform: translateY(-50%);
+      align-content: center;
       
     }
     .up {
@@ -286,7 +317,7 @@
       color:rgb(20, 20, 20);
       font-size: 3vw;
       font-family: 'Manrope', serif;
-      animation: spin 5s linear infinite; /* Spin forever */
+      animation: spin 7.5s linear infinite; /* Spin forever */
       position: absolute;
       top:60%;
       opacity: 0;
@@ -332,19 +363,19 @@
     <div class="line" id="left-line"></div>
     <div class="line" id="right-line"></div>
     
-    <div class="about">
+    <div class="about" id="about">
       <div id = 'box1'>✦About✦</div>
       <p id = "number1">01</p>
       <button id = "divisions1" onclick="onClickAbout()">About</button>
     </div>
-    <div class="works">
+    <div class="works" id="works">
       <div id = 'box2'>✦Works✦</div>
-      <p id = "number1">02</p>
+      <p id = "number2">02</p>
       <button id = "divisions2" onclick="onClickWorks()">Works</button>
     </div>
-    <div class="contact">
+    <div class="contact" id="contact">
       <div id = 'box3'>✦Contact✦</div>
-      <p id = "number1">03</p>
+      <p id = "number3">03</p>
       <button id = "divisions3" onclick="onClickContact()">Contact</button>
     </div>
 
@@ -365,6 +396,7 @@
 
     <script>
 
+    let transitionindicator = "False";
 
         function easing(x) {
       return 1 - Math.sqrt(1 - Math.pow(x, 1.9));
@@ -373,14 +405,40 @@
     function formatNumber(value) {
       return value < 10 ? `0${value}` : value; // Add leading zero if less than 10
     }
+    function redirect(hu) {
+      transitionindicator = "True" 
+      const intervalId = setInterval(() => {
+            window.location.href = "/" + hu;
+      },1600)
+    }
     function onClickAbout() {
-      window.location.href = '/about' 
+      
+      const divison1 = document.getElementById('divisions1');
+      const box1 = document.getElementById('box1');
+
+      redirect("about")
+      box1.style.height = "80vw";
+      
+      box1.style.color = 'white';
+      
     }
     function onClickWorks() {
-      window.location.href = '/work' 
+      const divison2 = document.getElementById('divisions2');
+      const box2 = document.getElementById('box2');
+
+      redirect("works")
+      box2.style.height = "80vw";
+      
+      box2.style.color = 'white';
     }
     function onClickContact() {
-      window.location.href = '/contact' 
+      const divison3 = document.getElementById('divisions3');
+      const box3 = document.getElementById('box3');
+
+      redirect("contact")
+      box3.style.height = "80vw";
+      
+      box3.style.color = 'white';
     }
 
 
@@ -452,19 +510,77 @@
       },   3000);})
       document.addEventListener('DOMContentLoaded', () => { 
         const divison1 = document.getElementById('divisions1')
+        const number1 = document.getElementById('number1')
         const box1 = document.getElementById('box1')
+        const divison2 = document.getElementById('divisions2')
+        const number2 = document.getElementById('number2')
+        const box2 = document.getElementById('box2')
+        const divison3 = document.getElementById('divisions3')
+        const number3 = document.getElementById('number3')
+        const box3 = document.getElementById('box3')
         
+        
+        if ("False" == "False") {
+          divison1.addEventListener('mouseenter', () => {
+            if (transitionindicator == "False") {
+              divison3.textContent = "";
+              divison2.textContent = "";
+              number3.textContent = "";
+              number2.textContent = "";
+              box1.style.height = "12vw";
+            }
+          });
+          divison1.addEventListener('mouseleave', () => {
+            if (transitionindicator == "False") {
+              divison3.textContent = "Contact";
+              divison2.textContent = "Works";
+              box1.style.height = "0vw";
+              number3.textContent = "03";
+              number2.textContent = "02";
+            }
+          });
+          divison2.addEventListener('mouseenter', () => {
+            if (transitionindicator == "False") {
+              divison1.textContent = "";
+              box2.style.height = "12vw";
+              divison3.textContent = "";
+              number3.textContent = "";
+              number1.textContent = "";
+            }
+          });
+          divison2.addEventListener(',mouseleave', () => {
+            if (transitionindicator == "False") {
+              divison1.textContent = "About";
+              box2.style.height = "0vw";
+              divison3.textContent = "Contact";
+              number3.textContent = "03";
+              number1.textContent = "01";
+            }
+          });
+          divison3.addEventListener('mouseenter', () => {
+            if (transitionindicator == "False") {
+              divison1.textContent = "";
+              divison2.textContent = "";
+              box3.style.height = "12vw";
+              number1.textContent = "";
+              number2.textContent = "";
+            }
+          });
+          divison3.addEventListener('mouseleave', () => {
+            if (transitionindicator == "False") {
+              divison1.textContent = "About";
+              divison2.textContent = "Works";
+              box3.style.height = "0vw";
+              number1.textContent = "01";
+              number2.textContent = "02";
+            }
+          });
 
-        divison1.addEventListener('mouseenter', () => {
-          box1.style.height = "12vw";
+          
 
-          box1.style.top = 'calc(7vh - 6vw)';
-        });
-        divison1.addEventListener('mouseleave', () => {
-          box1.style.height = "0vw";
-          box1.style.top = 'calc(7vh - 0vw)';
+}
 
-        });
+        
  
         })
         document.addEventListener('DOMContentLoaded', () => { 
@@ -481,46 +597,6 @@
             spinnertext.style.opacity = "1";
        
       },   3000);})
-      document.addEventListener('DOMContentLoaded', () => { 
-        const divison1 = document.getElementById('divisions3')
-        const box1 = document.getElementById('box3')
-
-        divison1.addEventListener('mouseenter', () => {
-          box1.style.height = "12vw";
-
-          box1.style.top = 'calc(7vh - 6vw)';
-        });
-        divison1.addEventListener('mouseleave', () => {
-          box1.style.height = "0vw";
-          box1.style.top = 'calc(7vh - 0vw)';
-
-        });
- 
-        })
-        document.addEventListener('DOMContentLoaded', () => { 
-          setTimeout(() => {
-            
-       
-      },   3000);})
-
-      document.addEventListener('DOMContentLoaded', () => { 
-        const divison1 = document.getElementById('divisions2')
-        const box1 = document.getElementById('box2')
-        
-
-        divison1.addEventListener('mouseenter', () => {
-          box1.style.height = "12vw";
-
-          box1.style.top = 'calc(7vh - 6vw)';
-        });
-        divison1.addEventListener('mouseleave', () => {
-          box1.style.height = "0vw";
-          box1.style.top = 'calc(7vh - 0vw)';
-
-        });
- 
-        })
-        
       
   </script>
 </body>
