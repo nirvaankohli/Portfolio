@@ -3,601 +3,530 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Mouse Blur and Expanding Line Effect</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=code" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@1,400..700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Syne:wght@800&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Syne&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@1,400..700&family=Manrope:wght@200..800&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Syne:wght@800&display=swap');
-        body {
-            background-color: rgb(240, 236, 233);
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: auto;
-            overflow: hidden;
+        
+        @import url('https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+        
+        
+        
+        body {       
+            font-family: 'Cabin Condensed', sans-serif;            
+            background-color: #FEF9E1;
+            scroll-behavior: smooth;
+        }
+        #svg-box {
+            bottom: -90%;
+        }
+
+        .blur-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 15vw;
+            height: 15vw;
+            background: rgba(105, 122, 89, 0.75);
+            filter: blur(9vw);
+            pointer-events: none;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+        }
+        #logo {
+            background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+            position:absolute;
+            display: block;
+            z-index: 50;
+            top:2vh;
+            width: calc(2vw + 5vh);
+            height: calc(2vw + 5vh);
+            left: 2vh;
+            border-radius:10px;}
+        .title {
+            width:calc(21vh + 52.5vw);
+            top: 50vh;
+            left:calc(46% + 2.5vh);
+            position: absolute;
+
+            transform: translate(-55%, -70%);
+        }
+        h1 {
+            mix-blend-mode: difference;
+            background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+            background-size: cover;
+            color: transparent;
+            -moz-background-clip: text;
+            -webkit-background-clip: text;
+            text-transform: uppercase;
+            font-size: calc(8vw + 5vh);
+            margin: 10px 0;
+            animation: show 0.01s forwards, pop-word 10s ease;
+            animation-timing-function: cubic-bezier(0.14, 1.23, 0.33, 1.16);
+            opacity: 0;
+            text-align: right;
+            right: 0vw;
+            width:calc(21vh + 52.5vw);
+            transform: rotateX(0deg);
             
         }
-        img {
-          filter: brightness(1.5);
-        }
-        .line {
-        position: fixed; /* Fix the lines to their respective sides */
-        width: 5px; /* Line thickness */
-        height: 0; /* Initial height */
-        background-color: black;
-        transition: height 0.2s ease; /* Smooth height adjustment */
-        }
-
-        /* Left line on the left side of the screen */
-        #left-line {
-          background-color: #c5c5c5;
-        top: 50%;
-        left: 1vw;
-        width: .3vw;
-        border-radius: 1vw;
-        transform: translateY(-50%);
-        }
-
-        /* Right line on the right side of the screen */
-        #right-line {
-        background-color: #c5c5c5;
-        top: 50%;
-        right: 1vw;
-        width: .3vw;
-        border-radius: 1vw;
-        transform: translateY(-50%);
-        }
-        
-        #load {
-            position:absolute;
-            color:rgb(17, 17, 17);
-            text-align: center;
-            text-align-last: center;
+        .bean-button {
+            display: block;
+            position: absolute;  
+            align-items: center;
             justify-content: center;
-            width: 100vw;
-            right: 0vw;
-            bottom: 35vh;
-            font-size: 25vw;
-            transform: rotate(0deg);
-            font-family: 'Newsreader';
-            transition: bottom 1.75s cubic-bezier(.35,.02,.74,-0.36), transform 1.6s cubic-bezier(0.7, 0, 0.84, 0);
-
+            width: 5vh;
+            height: 12vh;
+            background-color: #889E73;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 1s ease, font-size 1s ease, line-height 1s ease;
+            left:50%;
+            transform: translate(-50%, -50%);
+            bottom: 10vh;
+            z-index: 70;
+            line-height: 2.2;
+            font-size: 5vh;
+            text-align: center;
         }
-        #loads {
-          font-family: "Syne";
-          position: absolute;
-          top: 70%;
-          color: rgb(20, 20, 20);
-          font-size: 2.5vw;
-          transition: opacity 1s ease;
+        .bean-button:hover {
+            font-size: 8vh;
+            line-height: 1.2;
+            background-color: #A31D1D;
+            
         }
         
-        .fade {
-          transition: opacity 1.2s ease;
-          opacity: 0;
+        
+
+        
+        @keyframes pop-word {
+            from {
+                transform: rotateX(50deg);
+            }
+            to {
+                transform: rotateX(0);
+            }
         }
-        .word {
-          display: flex;
-          gap: 1vw; /* Space between letters */
-          height: 50vh; /* Take up half the viewport height */
-          align-items: center; /* Vertically center letters within the top half */
-          
-    }
 
-    /* Style for each letter */
-    .letter {
-      cursor: default;
-      
-      font-family:'Manrope', serif;
-      font-size: 17vw; /* Massive text size (20% of the viewport width) */
-      font-weight:100;
-      color: rgb(20, 20, 20);
-      text-transform:none; /* All caps */
-      transform: translateY(-20vh); /* Start below */
-      opacity: 0; /* Initially invisible */
-      clip-path: inset(0 0 70% 0); /* Clip the bottom half */
-      -webkit-clip-path: inset(0 0 70% 0); /* For Safari */
-      transition: transform 1s ease, opacity .01s ease, clip-path .5s ease;
-    }
+        @keyframes show {
+            to {
+                opacity: 1;
+            }
+        }
+        .navMenu {
+          border-radius: 25px;
+          text-align: center;
+          position: fixed;
+          background-color: #fef9e1;
+          height: calc(4vh + 1vw);
+          top: 5%;
+          left: 50%;
+          width: calc(18vh + 18vw);
+          -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, -50%);
+          z-index: 1000;
+        }
 
-    /* When letter animation starts */
-    .letter.animate {
-      transform: translateY(-30vh); /* Move to original position */
-      opacity: 1; /* Fully visible */
-      clip-path: inset(0 0 0 0); /* Remove clipping */
-      -webkit-clip-path: inset(0 0 0 0); /* For Safari */
-    }
+.navMenu a {
+  transform: translateY(35%);
+  z-index: 1000;
+  color: #889E73;
+  text-decoration: none;
+  font-size: calc(1vh + 1vw);
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+  width: calc(5vh + 5vw);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  filter: blur(0vw);
+}
 
-    .works {
-      transition: opacity .2s ease;
-      top: 44%;
-      height: 5vh;
-      width: 5vw;
-      left: 50vw;
-      transform: translateX(-50%);
-      position: fixed;
-      opacity: 0;
-      z-index: 6;
-      display: flex;
-    }
-    .contact {
-      transition: opacity .2s ease;
-      top: 44%;
-      height: 5vh;
-      width: 5vw;
-      left: 80vw;
-      transform: translateX(-50%);
-      position: fixed;
-      opacity: 0;
-      z-index: 6;
-    }
+.navMenu a:hover {
+  color: #A94A4A;
+}
 
-    .about {
-      top: 44%;
-      left: 20vw;
-      height: 5vh;
-      width: 5vw;
-      transform: translateX(-50%);
-      position: fixed;
-      opacity: 0;
-      z-index: 6;
-      transition: opacity .2s ease;
-
-    }
+#works {
+    overflow: visible;
+    transform: translateY(95vh) scale(.6);
+    font-family: 'Raleway', serif;
+    font-weight: 600;
+}
+#line {
+    position: absolute;
+    display: block;
+    background-color: #A31D1D;
+    width: calc(0.15vw + .25vh);
+    right: 50%;
     
-    #number1 {
-      opacity: inherit;
-      z-index: inherit;
-      position: relative;
-      color: #666666;
-      font-family: 'Archivo Narrow', serif;
-      font-size: .9vw;
-      right:-.5vw;
-      top: 0vh;
-    }
-    #number2 {
-      opacity: inherit;
-      z-index: inherit;
-      position: relative;
-      color: #666666;
-      font-family: 'Archivo Narrow', serif;
-      font-size: .9vw;
-      right:-.5vw;
-      top: 0vh;
-    }
-    #number3 {
-      opacity: inherit;
-      z-index: inherit;
-      position: relative;
-      color: #666666;
-      font-family: 'Archivo Narrow', serif;
-      font-size: .9vw;
-      right:-.5vw;
-      top: 0vh;
-    }
-    #divisions1 {
-      cursor: pointer;
-      top: 4vh;
-      position: inherit;
-      background-color: rgba(0, 0, 0, 0);
-      border:rgba(0, 0, 0, 0), 0px;
-      opacity: inherit;
-      z-index: 20;
-      height: 2.9vw;
-      width: 4vw;
+    transform: translate(50%, 0%);
+    
+    top: calc(110vh + 12.5vw);
+    height: 300vh;
+}
+#portfolio-image {
 
-      font-size: 1.25vw;
-      font-family: 'Manrope', serif;
-      color:rgb(20, 20, 20);
-      transition: color 1s ease;
-      
-    }
-    #divisions1:hover {
-      opacity: inherit;
-      color: rgb(126, 126, 126);
-      
-    }
-    #divisions2 {
-      cursor: pointer;
-      top: 4vh;
-      position: inherit;
-      
-      background-color: rgba(0, 0, 0, 0);
-      border:rgba(0, 0, 0, 0), 0px;
-      opacity: inherit;
-      z-index: inherit;
-      height: 2.9vw;
-      width: 4vw;
-      font-size: 1.25vw;
-      font-family: 'Manrope', serif;
-      color:rgb(20, 20, 20);
-      transition: color 1s ease;
-      z-index: 20;
-      
-    }
-    #divisions2:hover {
-      
-      opacity: inherit;
-      color: rgb(126, 126, 126);
-      
-    }
-    #divisions3 {
-      cursor: pointer;
-      top: 4vh;
-      background-color: rgba(0, 0, 0, 0);
-      border:rgba(0, 0, 0, 0), 0px;
-      position: inherit;
-      opacity: inherit;
-      z-index: inherit;
-      height: 2.9vw;
-      width: 4vw;
-      font-size: 1.25vw;
-      font-family: 'Manrope', serif;
-      color:rgb(20, 20, 20);
-      transition: color 1s ease;
-      z-index: 20;
-      
-    }
-    #divisions3:hover {
-      
-      opacity: inherit;
-      color: rgb(126, 126, 126);
-      
-    }
-    #box1 {
-      display:block;
-      align-content: center;
-      text-align: center;
-      font-family: 'Manrope', serif;
-      color:#303030;
-      overflow: hidden;
-      font-size: 15vw;
-      opacity: inherit;
-      position: absolute;
-      height:0px;
-      width: 100vw;
-      background-color: rgb(0, 0, 0);
-      transition: height 1.5s ease, top 1.5s ease, color 4s ease;
-      z-index: 20;
-      top:7vh;
-      left: -17.5vw;
-      line-height: .72;
-      transform: translateY(-50%);
-    }
-    #box2 {
-      display:block;
-      text-align: center;
-      font-family: 'Manrope', serif;
-      color:#303030;
-      overflow: hidden;
-      font-size: 15vw;
-      opacity: inherit;
-      left: 0;
-      position: fixed;
-      height:0px;
-      width: 100vw;
-      background-color: rgb(0, 0, 0);
-      transition: height 1.5s ease, top 1.5s ease, color 4s ease;
-      z-index: 20;
-      top:7vh;
-      left: -47.5vw;
-      line-height: .72;
-      transform: translateY(-50%);
-      align-content: center;
-    }
-    #box3 {
-      display:block;
-      text-align: center;
-      font-family: 'Manrope', serif;
-      color:#303030;
-      overflow: hidden;
-      font-size: 15vw;
-      opacity: inherit;
-      left: 0;
-      position: fixed;
-      height:0px;
-      width: 100vw;
-      background-color: rgb(0, 0, 0);
-      transition: height 1.5s ease, top 1.5s ease, color 4s ease;
-      z-index: 20;
-      top:7vh;
-      left: -77.5vw;
-      line-height: .72;
-      transform: translateY(-50%);
-      align-content: center;
-      
-    }
-    .up {
-      height: 20vw;
-    }
-    #spinner1 {
-      cursor: default;
-      color:rgb(20, 20, 20);
-      font-size: 3vw;
-      font-family: 'Manrope', serif;
-      animation: spin 7.5s linear infinite; /* Spin forever */
-      position: absolute;
-      top:60%;
-      opacity: 0;
-      position: absolute;
-      text-align: center ;
-      line-height: .79;
-      left: 48.5%;
-      transform: translateX(-50%);
-      transition: opacity .2s ease;
-      
-    }
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
+    width: 70vw;
+    width: 70vw;
+    position: absolute;
+    display: block;
+    transform: translateY(-50%);
+    top:  calc(220vh + 12.5vw);
+    border-radius: 25px;
+
+    left: 25%;
+    width: 17.5%;
+}
+#portfolio {
+    position: absolute;
+    display: block;
+    width: 80vw;
+    height: 40vh;
+    top:  calc(200vh + 12.5vw);
+    right: 47.5%;
     
-    #underspinner1text {
-      cursor: default;
-      color:rgb(20, 20, 20);
-      font-size: 1vw;
-      font-family: 'Manrope', serif;
-      position: absolute;
-      text-align: center ;
-      top:70%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20%;
-      opacity: 0;
-      transition: opacity .2s ease;
-    }
+    transform: translate(50%, 0%);
+
+}
+#flipzai {
+    position: absolute;
+    display: block;
+    width: 80vw;
+    height: 40vh;
+    top:  calc(135vh + 12.5vw);
+    right: 50%;
     
+    transform: translate(50%, 0%);
+
+}
+#flipzai-image {
+    width: 50vw;
+    position: absolute;
+    display: block;
+    transform: translateY(-50%);
+    top:  calc(155vh + 12.5vw);
+    border-radius: 25px;
+
+    right: 27.5%;
+    width: 17.5%;
+}
+.project-title {
+    position: absolute;
+    display: block;
+    top:40%;
+    left: calc(30% - 10.5vh);
+    color:#A31D1D;
+    text-align: left;
+    font-size: calc(3.5vw + 2vh);
+    font-weight: 800;
+    font-family: 'Raleway', serif;
+    opacity: 1;
+
+}
+.project-title-left {
+    position: absolute;
+    display: block;
+    top:40%;
+    right: calc(30% - 10.5vh);
+    color:#A31D1D;
+    text-align: right;
+    font-size: calc(3.5vw + 2vh);
+    font-weight: 800;
+    font-family: 'Raleway', serif;
+    opacity: 1;
+
+}
+.project-dot {
+    position: sticky;
+    display: block;
+    top: 50%;
+    transform: translate(calc(-.425vw + -9px), 50%); 
+    color:#A31D1D;
+    border-radius: 40vw;
+    border: calc(.2vw + 3px) solid #A31D1D;
+    border-color: #A31D1D;
+    background-color:#FEF9E1 ;
+    text-align: left;
+    font-size: 1vw;
+    width: calc(.7vw + 15px);
+    height:  calc(.7vw + 15px);
     
+    font-family: 'Cabin Condensed', serif;
+
+}
+.project-subtitle {
+    position: absolute;
+    display: block;
+    top:calc(40% + calc(4vw + 2vh));
+    left: calc(30% - 10.5vh);
+    color:#A94A4A;
+    text-align: left;
+    font-size: calc(.75vh + .5vw);
+    
+    font-family: 'Cabin Condensed', serif;
+}
+.project-subtitle-left {
+    position: absolute;
+    display: block;
+    top:calc(40% + calc(4vw + 2vh));
+    right: calc(30% - 10.5vh);
+    color:#A94A4A;
+    text-align: right;
+    font-size: calc(.75vh + .5vw);
+    
+    font-family: 'Cabin Condensed', serif;
+}
+.project-demo {
+    font-weight: 400;
+    font-family: 'Raleway', serif;
+    position: absolute;
+    text-align: center;
+    align-items: center;
+    line-height: 2;
+    cursor: pointer;
+    display: block;
+    top:calc(40% + calc(5.5vw + 2.75vh));
+    width: calc(3.5vw + 5.5vh);
+    height: calc(1vw + 1.5vh);
+    left:calc(30% - 10.5vh);
+    font-size: calc(.75vh + .5vw);
+    background-color: #889E73;
+    border-radius: 100px;
+    transition: all 1s ease;
+
+    color: #fffcea;
+}
+.project-demo-left {
+    font-weight: 400;
+    font-family: 'Raleway', serif;
+    position: absolute;
+    text-align: center;
+    align-items: center;
+    line-height: 2;
+    cursor: pointer;
+    display: block;
+    top:calc(40% + calc(5.5vw + 2.75vh));
+    width: calc(3.5vw + 5.5vh);
+    height: calc(1vw + 1.5vh);
+    right:calc(30% - 10.5vh);
+    font-size: calc(.75vh + .5vw);
+    background-color: #889E73;
+    border-radius: 100px;
+    transition: all 1s ease;
+
+    color: #fffcea;
+}
+.project-demo-left:hover {
+    line-height: 1.75;
+    font-weight: 200;
+    font-size: calc(1vh + .75vw);
+    background-color: #A31D1D;
+    
+    right:calc(calc(30% - 10.5vh) - .5vw);
+    top:calc(39.5% + 7vw);
+    color: #fffcea;
+    width: calc(4vw + 6vh);
+    height: calc(1.5vw + 1.75vh);
+}
+.project-demo:hover {
+    line-height: 1.75;
+    font-weight: 200;
+    font-size: calc(1vh + .75vw);
+    background-color: #A31D1D;
+    
+    left:calc(calc(30% - 10.5vh) - .5vw);
+    top:calc(39.5% + 7vw);
+    color: #fffcea;
+    width: calc(4vw + 6vh);
+    height: calc(1.5vw + 1.75vh);
+}
+.project-repo {
+    font-weight: 400;
+    font-family: 'Raleway', serif;
+    position: absolute;
+    text-align: center;
+    align-items: center;
+    line-height: 2;
+    cursor: pointer;
+    display: block;
+    top:calc(40% + calc(5.5vw + 2.75vh));
+    width: calc(3.5vw + 5.5vh);
+    height: calc(1vw + 1.5vh);
+    left:calc(calc(30% - 10.5vh) + calc(4.5vw + 6.5vh));
+    font-size: calc(.75vh + .5vw);
+    background-color: #889E73;
+    border-radius: 100px;
+    transition: all 1s ease;
+
+    color: #fffcea;
+}
+.project-repo-left {
+    font-weight: 400;
+    font-family: 'Raleway', serif;
+    position: absolute;
+    text-align: center;
+    align-items: center;
+    line-height: 2;
+    cursor: pointer;
+    display: block;
+    top:calc(40% + calc(5.5vw + 2.75vh));
+    width: calc(3.5vw + 5.5vh);
+    height: calc(1vw + 1.5vh);
+    right:calc(calc(30% - 10.5vh) + calc(4.5vw + 6.5vh));
+    font-size: calc(.75vh + .5vw);
+    background-color: #889E73;
+    border-radius: 100px;
+    transition: all 1s ease;
+
+    color: #fffcea;
+}
+
+
+.project-repo:hover {
+    line-height: 1.75;
+    font-weight: 200;
+    font-size:calc(1vh + .75vw);
+    background-color: #A31D1D;
+    left:calc(calc(30% - 10.5vh) + calc(4.5vw + 6.5vh));
+    top:calc(39.5% + 7vw);
+    color: #fffcea;
+    width: calc(4vw + 6vh);
+    height: calc(1.5vw + 1.75vh);
+} 
+.project-repo-left:hover {
+    line-height: 1.75;
+    font-weight: 200;
+    font-size: calc(1vh + .75vw);
+    background-color: #A31D1D;
+    right:calc(calc(30% - 10.5vh) + calc(4.5vw + 6.5vh));
+    top:calc(39.5% + 7vw);
+    color: #fffcea;
+    width: calc(4vw + 6vh);
+    height: calc(1.5vw + 1.75vh);
+} 
+
+
     </style>
 </head>
 <body>
-
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;"><span id = "load">5</span></div>
+    <div class="blur-effect" id="blur"></div>
+        
+        <div class="title">
+            <h1>Hi 👋🏼</h1>
+            <h1 style="top: 60%;"> I'm Nirvaan</h1>
+    </div>
+    <div class="bean-button" onclick="slowSmoothScroll('works', 200, 1500)">
+        &#x2193;
+    </div>
     
-    <div class="line" id="left-line"></div>
-    <div class="line" id="right-line"></div>
+    <nav class="navMenu">
+        <a href="">Home</a>
+        <a href="works">Works</a>
+        <a href="#">About</a>
+        
+    </nav>
+    <svg width="9vh" height="9vh" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" id = "logo">
+        <rect x="3" y="4" width="3" height="15" rx="1.5" fill="#FEF9E1"/>
+        <rect x="18" y="16" width="3" height="15" rx="1.5" transform="rotate(90 18 16)" fill="#FEF9E1"/>
+        <path d="M9.85505 9.29137L4.01697 15.1295C3.62645 15.52 3.62644 16.1531 4.01697 16.5437L5.61172 18.1384C6.00224 18.5289 6.63541 18.5289 7.02593 18.1384L12.864 12.3003C13.2545 11.9098 13.8877 11.9098 14.2782 12.3003L15.2782 13.3003C15.8927 13.9148 16.9447 13.5069 16.9842 12.6387L17.2911 5.90876C17.3179 5.32115 16.8342 4.83745 16.2466 4.86425L9.51667 5.17114C8.64847 5.21073 8.24057 6.26267 8.85511 6.87721L9.85506 7.87715C10.2456 8.26768 10.2456 8.90084 9.85505 9.29137Z" fill="#FEF9E1"/>
+    </svg>
+    <svg viewbox="0 0 100 20" id="works">
+        <defs>
+          <linearGradient id="gradient">
+            <stop color="#A94A4A"/>
+          </linearGradient>
+          
+          <pattern id="wave" x="0" y="-0.5" width="100%" height="250%" patternUnits="userSpaceOnUse">
+            <path id="wavePath" d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z" mask="url(#mask)" fill="#A31D1D"> 
+              <animateTransform
+                  attributeName="transform"
+                  begin="0s"
+                  dur="1.5s"
+                  type="translate"
+                  from="0,0"
+                  to="40,0"
+                  repeatCount="indefinite" />
+            </path>
+          </pattern>
+        </defs>
+        <text text-anchor="middle" x="50" y="15" font-size="clamp(.5vh, calc(3vh - .5vw), 9vh)" fill="#FEF9E1" fill-opacity="1" xml:space="preserve" style="fill:none;stroke:#A31D1D;stroke-width:.2;">WORKS</text>
+        <text text-anchor="middle" x="50" y="15" font-size="clamp(.5vh, calc(3vh - .5vw), 9vh)" fill="url(#wave)"  fill-opacity="1">WORKS</text>
+      </svg>
+      <div id = "line"><div class="project-dot"></div></div>
+      <div id="flipzai">
+        <div class="project-title" id="flipz-title">FLIPZ.AI</div>
+        <div class="project-subtitle">Generate A.I Flashcards</div>
+        <div class="project-demo" onclick="flipzaidemo()">DEMO →</div>
+        <div class="project-repo" onclick="flipzairepo()">REPO 👨🏽‍💻</div>
+        
+        
+      </div>
+      <div id="portfolio">
+        <div class="project-title-left" id="portfolio-title">Portfolio</div>
+        <div class="project-subtitle-left">About Me!</div>
+        <div class="project-demo-left" onclick="flipzaidemo()">DEMO →</div>
+        <div class="project-repo-left" onclick="flipzairepo()">REPO 👨🏽‍💻</div>
+        
+        
+      </div>
+      <img id = "portfolio-image" src = "https://hc-cdn.hel1.your-objectstorage.com/s/v3/cdf27ed223bd72624dad8ba21d382b015f804608_flipzai__4_.png">
+      <img id = "flipzai-image" src="https://cloud-fq829dury-hack-club-bot.vercel.app/0flipzai.png">
+      
+        
+→
     
-    <div class="about" id="about">
-      <div id = 'box1'>✦About✦</div>
-      <p id = "number1">01</p>
-      <button id = "divisions1" onclick="onClickAbout()">About</button>
-    </div>
-    <div class="works" id="works">
-      <div id = 'box2'>✦Works✦</div>
-      <p id = "number2">02</p>
-      <button id = "divisions2" onclick="onClickWorks()">Works</button>
-    </div>
-    <div class="contact" id="contact">
-      <div id = 'box3'>✦Contact✦</div>
-      <p id = "number3">03</p>
-      <button id = "divisions3" onclick="onClickContact()">Contact</button>
-    </div>
-
-    <div id = 'loads'>Loading...</div>
-
-    <div class="word">
-      <span class="letter">N</span>
-      <span class="letter">i</span>
-      <span class="letter">r</span>
-      <span class="letter">v</span>
-      <span class="letter">a</span>
-      <span class="letter">a</span>
-      <span class="letter">n</span>
-    </div>
-    <span id = "spinner1">✦</span>
-    <span id = "underspinner1text">Hi, I’m Nirvaan Singh Kohli from New Jersey, USA, and I’m 13 years old. I’m passionate about learning and currently exploring JavaScript, HTML, CSS, Python, machine learning systems as I build skills for the future. </span>
-
 
     <script>
+        const blurElement = document.getElementById('blur');
 
-    let transitionindicator = "False";
+        document.addEventListener('mousemove', (event) => {
+            const { clientX, clientY } = event;
+            blurElement.style.left = `${clientX}px`;
+            blurElement.style.top = `${clientY}px`;
+        });
 
-        function easing(x) {
-      return 1 - Math.sqrt(1 - Math.pow(x, 1.9));
-    }
-
-    function formatNumber(value) {
-      return value < 10 ? `0${value}` : value; // Add leading zero if less than 10
-    }
-    function redirect(hu) {
-      transitionindicator = "True" 
-      const intervalId = setInterval(() => {
-            window.location.href = "/" + hu;
-      },1600)
-    }
-    function onClickAbout() {
-      
-      const divison1 = document.getElementById('divisions1');
-      const box1 = document.getElementById('box1');
-
-      redirect("about")
-      box1.style.height = "80vw";
-      
-      box1.style.color = 'white';
-      
-    }
-    function onClickWorks() {
-      const divison2 = document.getElementById('divisions2');
-      const box2 = document.getElementById('box2');
-
-      redirect("works")
-      box2.style.height = "80vw";
-      
-      box2.style.color = 'white';
-    }
-    function onClickContact() {
-      const divison3 = document.getElementById('divisions3');
-      const box3 = document.getElementById('box3');
-
-      redirect("contact")
-      box3.style.height = "80vw";
-      
-      box3.style.color = 'white';
-    }
-
-
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const loader = document.getElementById('load');
-      const leftLine = document.getElementById('left-line');
-      const rightLine = document.getElementById('right-line');
-      
-      let currentNumber = 0;
-      const targetNumber = 100;
-      const duration = 2000; // 2 seconds
-      const interval = 30; // Update every 10ms
-      const increment = targetNumber / (duration / interval);
-
-      const intervalId = setInterval(() => {
-        currentNumber += increment;
-        if (currentNumber >= targetNumber) {
-          currentNumber = targetNumber;
-          clearInterval(intervalId);
+        function flipzaidemo() {
+            window.location.href = "http://flipzai.nirvaankohli.com";
         }
 
-        const easedValue = easing(currentNumber / targetNumber) * targetNumber;
-        const formattedValue = formatNumber(Math.floor(easedValue));
-        loader.textContent = `${formattedValue}%`;
+        function flipzairepo() {
+            window.location.href = "https://github.com/nirvaankohli/flipz.ai/";
+        }
+        function slowSmoothScroll(targetId, offset = 0, duration = 2000) {
+            const targetElement = document.getElementById(targetId);
+            if (!targetElement) return;
 
-        // Adjust line heights based on eased value
-        const lineHeight = `${easedValue/1.2}vh`; // Scale height (e.g., 200px at 100%)
-        leftLine.style.height = lineHeight;
-        rightLine.style.height = lineHeight;
-      }, interval);})
-      document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-          
-          const leftLine = document.getElementById('left-line');
-          const rightLine = document.getElementById('right-line');
-          const loading = document.getElementById("loading");
-          const loads = document.getElementById("loads");
-          
-          
-          leftLine.classList.add('fade');
-          rightLine.classList.add('fade');
-          
+            const startPosition = window.scrollY;
+            const targetPosition = targetElement.getBoundingClientRect().top + startPosition - offset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
 
-        }, 2300);
-      });
-      document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {  
-        const loader = document.getElementById('load');
-          loads.style.opacity = 0;
-          loader.style.bottom = "-100vh"
-          loader.style.transform = "rotate(120deg)"
-        }, 1700);
-      })
-     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        const letters = document.querySelectorAll('.letter');
-        const middleIndex = Math.floor(letters.length / 2); // Get the index of the middle letter
+            function animationScroll(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / duration, 1);
 
-        
-        letters.forEach((letter, index) => {
-          // Calculate delay based on distance from the middle letter
-          const delay = Math.abs(index - middleIndex) * 100;
+                // Ease-in-out function for smooth acceleration/deceleration
+                const ease = progress < 0.5
+                    ? 2 * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
 
-          setTimeout(() => {
-            letter.classList.add('animate');
-          }, delay); // Apply the calculated delay
-        });
-      },   3000);})
-      document.addEventListener('DOMContentLoaded', () => { 
-        const divison1 = document.getElementById('divisions1')
-        const number1 = document.getElementById('number1')
-        const box1 = document.getElementById('box1')
-        const divison2 = document.getElementById('divisions2')
-        const number2 = document.getElementById('number2')
-        const box2 = document.getElementById('box2')
-        const divison3 = document.getElementById('divisions3')
-        const number3 = document.getElementById('number3')
-        const box3 = document.getElementById('box3')
+                window.scrollTo(0, startPosition + (distance * ease));
+
+                if (elapsedTime < duration) {
+                    requestAnimationFrame(animationScroll);
+                } else {
+                    targetElement.classList.add("highlight");
+                    setTimeout(() => targetElement.classList.remove("highlight"), 1500);
+                }
+            }
+
+            requestAnimationFrame(animationScroll);
+        }
         
         
-        if ("False" == "False") {
-          divison1.addEventListener('mouseenter', () => {
-            if (transitionindicator == "False") {
-              divison3.textContent = "";
-              divison2.textContent = "";
-              number3.textContent = "";
-              number2.textContent = "";
-              box1.style.height = "12vw";
-            }
-          });
-          divison1.addEventListener('mouseleave', () => {
-            if (transitionindicator == "False") {
-              divison3.textContent = "Contact";
-              divison2.textContent = "Works";
-              box1.style.height = "0vw";
-              number3.textContent = "03";
-              number2.textContent = "02";
-            }
-          });
-          divison2.addEventListener('mouseenter', () => {
-            if (transitionindicator == "False") {
-              divison1.textContent = "";
-              box2.style.height = "12vw";
-              divison3.textContent = "";
-              number3.textContent = "";
-              number1.textContent = "";
-            }
-          });
-          divison2.addEventListener(',mouseleave', () => {
-            if (transitionindicator == "False") {
-              divison1.textContent = "About";
-              box2.style.height = "0vw";
-              divison3.textContent = "Contact";
-              number3.textContent = "03";
-              number1.textContent = "01";
-            }
-          });
-          divison3.addEventListener('mouseenter', () => {
-            if (transitionindicator == "False") {
-              divison1.textContent = "";
-              divison2.textContent = "";
-              box3.style.height = "12vw";
-              number1.textContent = "";
-              number2.textContent = "";
-            }
-          });
-          divison3.addEventListener('mouseleave', () => {
-            if (transitionindicator == "False") {
-              divison1.textContent = "About";
-              divison2.textContent = "Works";
-              box3.style.height = "0vw";
-              number1.textContent = "01";
-              number2.textContent = "02";
-            }
-          });
-
-          
-
-}
-
-        
- 
-        })
-        document.addEventListener('DOMContentLoaded', () => { 
-          setTimeout(() => {
-            const about = document.querySelector('.about');
-            const spinner = document.getElementById('spinner1');
-            const spinnertext = document.getElementById('underspinner1text')
-            const contact = document.querySelector('.contact');
-            const works = document.querySelector('.works');
-            works.style.opacity = "1";
-            contact.style.opacity = "1";
-            about.style.opacity = "1";
-            spinner1.style.opacity = "1";
-            spinnertext.style.opacity = "1";
-       
-      },   3000);})
-      
-  </script>
+    </script>
 </body>
 </html>
+

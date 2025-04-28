@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Works - Nirvaan</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=code" />
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+        
+        
+        
+        body {       
+            font-family: 'Cabin Condensed', sans-serif;            
+            background-color: #FEF9E1;
+            scroll-behavior: smooth;
+        }
+        #svg-box {
+            bottom: -90%;
+        }
+
+        .blur-effect {
+            transition: .5s opacity ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 15vw;
+            height: 15vw;
+            background: rgba(105, 122, 89, 0.75);
+            filter: blur(9vw);
+            pointer-events: none;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+        }
+        #logo {
+            background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+            position:absolute;
+            display: block;
+            z-index: 50;
+            top:2vh;
+            width: calc(2vw + 5vh);
+            height: calc(2vw + 5vh);
+            left: 2vh;
+            border-radius:10px;}
+        .title {
+            width:calc(21vh + 52.5vw);
+            top: calc(17.5vh + 5vw);
+            left:50%;
+
+            position: absolute;
+
+            transform: translate(-50%, -70%);
+        }
+        h1 {
+            mix-blend-mode: difference;
+            background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+            background-size: cover;
+            color: transparent;
+            -moz-background-clip: text;
+            -webkit-background-clip: text;
+            text-transform: uppercase;
+            font-size: calc(9vw + 6vh);
+            margin: 10px 0;
+            animation: show 0.01s forwards, pop-word 10s ease;
+            animation-timing-function: cubic-bezier(0.14, 1.23, 0.33, 1.16);
+            opacity: 0;
+            text-align: center;
+            right: 0vw;
+            width:calc(21vh + 52.5vw);
+            transform: rotateX(0deg);
+            font-family: 'Raleway', serif;
+            font-weight: 800;
+        }
+
+        
+        
+
+        
+        @keyframes pop-word {
+            from {
+                transform: rotateX(50deg);
+            }
+            to {
+                transform: rotateX(0);
+            }
+        }
+
+        @keyframes show {
+            to {
+                opacity: 1;
+            }
+        }
+        .navMenu {
+          border-radius: 25px;
+          text-align: center;
+          position: fixed;
+          background-color: #fef9e1;
+          height: calc(4vh + 1vw);
+          top: 5%;
+          left: 50%;
+          width: calc(18vh + 18vw);
+          -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, -50%);
+          z-index: 1000;
+        }
+
+        .navMenu a {
+        transform: translateY(35%);
+        z-index: 1000;
+        color: #889E73;
+        text-decoration: none;
+        font-size: calc(1vh + 1vw);
+        text-transform: uppercase;
+        font-weight: 500;
+        display: inline-block;
+        width: calc(5vh + 5vw);
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        filter: blur(0vw);
+        }
+
+        .navMenu a:hover {
+        color: #A94A4A;
+        }
+        .grid-container {
+            display: grid;
+            gap: 10px;
+            position: absolute;
+            top: calc(25vh + 10vw);
+            left: 15vw;
+            right: 15vw;
+            width: 70vw;
+        }
+
+        .grid-item {
+            overflow: hidden;
+            aspect-ratio: 1;
+            border: 2px solid #A31D1D;
+            background-color: #f9f9f9;
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 1fr);
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+            }
+        }
+        .finished {
+            width: 100%;
+            height: 100%;
+            transition: all 1s ease;
+            filter:blur(0px);
+            
+        }
+        
+        .finished:hover {
+            transition: all 1s ease;
+            filter:blur(4px);
+
+        }
+
+        .unfinished {
+            background-image: url("https://hc-cdn.hel1.your-objectstorage.com/s/v3/1e5f47796100d5116670f900e0ac65487b8960d3_flipzai__2_.png");
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            transition: all 1s ease;
+            filter:blur(0px);
+            
+        }
+        
+        .unfinished:hover {
+            transition: all 1s ease;
+            filter:blur(4px);
+
+        }
+
+        #flipzai {
+            background-image: url("https://hc-cdn.hel1.your-objectstorage.com/s/v3/b616ebfb7966129a322cb57c0bf3ddcafd851c4b_flipzai__1_.png");
+            background-size: cover;
+        }
+        #portfolio {
+            background-image: url("https://hc-cdn.hel1.your-objectstorage.com/s/v3/46ef81020799db49f12ac5587c052e73212b61a9_untitled_design__4_.png");
+            background-size: cover;
+        }
+        #visit-website {
+            cursor:default;
+            font-family: 'Raleway', serif;
+            font-weight: 600;
+            font-size: calc(.65vh + .65vw);
+            line-height: 2.5;
+            transform: translate(-50%, -50%);
+            position: fixed;
+            transition: width 1s ease, opacity .5s ease;
+            overflow:hidden;
+            opacity: 0;
+            width: 0px;
+            height: calc(1.7vw + 1.7vh);
+            text-align: center;
+            border-radius: 50px;
+            background-color: #A31D1D;
+            color:#f9f9f9;
+            z-index: 400;
+            text-transform: uppercase;
+        }
+        #coming-soon {
+
+            cursor:default;
+            font-family: 'Raleway', serif;
+            font-weight: 600;
+            font-size: calc(.65vh + .65vw);
+            line-height: 2.5;
+            transform: translate(-50%, -50%);
+            position: fixed;
+            transition: width 1s ease, opacity .5s ease;
+            overflow:hidden;
+            opacity: 0;
+            width: 0px;
+            height: calc(1.7vw + 1.7vh);
+            text-align: center;
+            border-radius: 50px;
+            background-color: #c6c7c7;
+            border: 2px solid #000000;
+            color:#000000;
+            z-index: 400;
+            text-transform: uppercase;
+
+        }
+        .big-wrapper {
+            opacity: 0;
+            position: absolute;
+
+            width:32.5%;
+            height:50%;
+            z-index: 600;
+            cursor: none;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div id="visit-website">learn more</div>
+    <div id="coming-soon">coming soon</div>
+    <div class="blur-effect" id="blur"></div>
+        
+        <div class="title">
+            <h1> Works</h1>
+    </div>
+    
+    <nav class="navMenu">
+        <a href="/">Home</a>
+        <a href="works">Works</a>
+        <a href="#">About</a>
+        
+    </nav>
+    <svg width="9vh" height="9vh" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" id = "logo">
+        <rect x="3" y="4" width="3" height="15" rx="1.5" fill="#FEF9E1"/>
+        <rect x="18" y="16" width="3" height="15" rx="1.5" transform="rotate(90 18 16)" fill="#FEF9E1"/>
+        <path d="M9.85505 9.29137L4.01697 15.1295C3.62645 15.52 3.62644 16.1531 4.01697 16.5437L5.61172 18.1384C6.00224 18.5289 6.63541 18.5289 7.02593 18.1384L12.864 12.3003C13.2545 11.9098 13.8877 11.9098 14.2782 12.3003L15.2782 13.3003C15.8927 13.9148 16.9447 13.5069 16.9842 12.6387L17.2911 5.90876C17.3179 5.32115 16.8342 4.83745 16.2466 4.86425L9.51667 5.17114C8.64847 5.21073 8.24057 6.26267 8.85511 6.87721L9.85506 7.87715C10.2456 8.26768 10.2456 8.90084 9.85505 9.29137Z" fill="#FEF9E1"/>
+    </svg>
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class = "unfinished" id = "flipzai" ></div>
+            <div class = "big-wrapper" onmouseover="mouseenterwork('flipzai')" onmouseleave="mouseleavework('flipzai')" onclick = "flipzaidemo()">
+
+                
+            </div>
+        </div>
+        <div class="grid-item">
+            
+            <div class = "unfinished" id = "portfolio" > </div>
+            <div class = "big-wrapper" onmouseover="mouseenterwork('portfolio')" onmouseleave="mouseleavework('portfolio')" onclick = "portfoliodemo()"></div>
+
+        </div>
+        <div class="grid-item">
+            <div class = "unfinished" id = "unfinished1" ></div>
+            <div class = "big-wrapper" onmouseover="unfinishedmouseover('unfinished1')" onmouseleave="unfinishedmouseleave('unfinished1')"></div>
+        </div>
+        <div class="grid-item">
+            <div class = "unfinished" id = "unfinished2" ></div>
+            <div class = "big-wrapper" onmouseover="unfinishedmouseover('unfinished2')" onmouseleave="unfinishedmouseleave('unfinished2')"></div>
+        </div>
+        <div class="grid-item">
+            <div class = "unfinished" id = "unfinished3" ></div>
+            <div class = "big-wrapper" onmouseover="unfinishedmouseover('unfinished3')" onmouseleave="unfinishedmouseleave('unfinished3')"></div>
+        </div>
+        <div class="grid-item">
+            <div class = "unfinished" id = "unfinished4" ></div>
+            <div class = "big-wrapper" onmouseover="unfinishedmouseover('unfinished4')" onmouseleave="unfinishedmouseleave('unfinished4')"></div>
+        </div>
+    </div>
+    
+    <script>
+
+        var visit_website_link = "www.nirvaankohli.com"
+        const blurElement = document.getElementById('blur');
+        function unfinishedmouseover(id) {
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                const comingsoonbutton = document.getElementById('coming-soon');
+                const identification = document.getElementById(id);
+                comingsoonbutton.style.width = "calc(6vw + 6vh)"
+                comingsoonbutton.style.opacity = "1"
+                identification.style.filter = "blur(4px)"
+                blurElement.style.opacity = "0"
+            }
+
+        }
+        function unfinishedmouseleave(id) {
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                const comingsoonbutton = document.getElementById('coming-soon');
+                const identification = document.getElementById(id);
+                comingsoonbutton.style.width = "0px"
+                identification.style.filter = "blur(0px)"
+                comingsoonbutton.style.opacity = "0"
+            }
+            
+        }
+        function mouseenterwork(id) {
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                const visitbutton = document.getElementById('visit-website');
+                const identification = document.getElementById(id);
+                visitbutton.style.width = "calc(6vw + 6vh)"
+                visitbutton.style.opacity = "1"
+                blurElement.style.opacity = "0"
+                identification.style.filter = "blur(4px)"
+            }
+            
+            
+        }
+        function mouseleavework(id) {
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                const visitbutton = document.getElementById('visit-website');
+                const identification = document.getElementById(id);
+                visitbutton.style.width = "0px"
+                visitbutton.style.opacity = "0"
+                blurElement.style.opacity = "1"
+                identification.style.filter = "blur(0px)"
+            }
+        }
+
+        document.addEventListener('mousemove', (event) => {
+            const { clientX, clientY } = event;
+            blurElement.style.left = `${clientX}px`;
+            blurElement.style.top = `${clientY}px`;
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                const visitbutton = document.getElementById('visit-website');
+                const comingsoonbutton = document.getElementById('coming-soon');
+                const { clientX, clientY } = event;
+                visitbutton.style.left = `${clientX}px`;
+                visitbutton.style.top = `${clientY}px`;
+                comingsoonbutton.style.left = `${clientX}px`;
+                comingsoonbutton.style.top = `${clientY}px`;
+            }
+        });
+
+        function flipzaidemo() {
+            window.location.href = "https://flipzai.nirvaankohli.com";
+        }
+
+        function portfoliodemo() {
+            window.location.href = "https://nirvaankohli.com";
+        }
+        
+        
+    </script>
+</body>
+</html>
+
