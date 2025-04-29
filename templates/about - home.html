@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Works - Nirvaan</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=code" />
+    <title>About - Nirvaan</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <link rel="stylesheet" href="aboutstyle.css" />
     <style>
         
         @import url('https://fonts.googleapis.com/css2?family=Cabin+Condensed:wght@400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
@@ -15,6 +17,7 @@
             font-family: 'Cabin Condensed', sans-serif;            
             background-color: #FEF9E1;
             scroll-behavior: smooth;
+            min-height: 200vh;
         }
         #svg-box {
             bottom: -90%;
@@ -73,10 +76,14 @@
             font-family: 'Raleway', serif;
             font-weight: 800;
         }
-
         
-        
+        .title h1 {
+            transition: opacity 1s ease;
+        }
 
+        .title.hidden h1 {
+            opacity: 0;
+        }
         
         @keyframes pop-word {
             from {
@@ -125,8 +132,177 @@
         color: #A94A4A;
         }
         
-        
+        .quote {
+            opacity: 0;
+            filter: blur(10px);
+            transition: opacity 1s ease, filter 1s ease;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: calc(2vh + 3vw);
+            color: #889E73;
+            text-align: center;
+            font-family: 'Raleway', serif;
+            font-weight: 600;
+        }
+        #redsayer {
+            color: #A31D1D;
+            font-weight: 800;
+            line-height: .2;
+            font-size: calc(1vh + 1.5vw);
+        }
 
+        .quote.visible {
+            opacity: 1;
+            filter: blur(0);
+        }
+
+        .scroll-text {
+            position: fixed;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            font-size: calc(1vh + 1vw);
+            color: #889E73;
+            text-align: center;
+            font-family: 'Raleway', serif;
+            font-weight: 500;
+            opacity: 1;
+            transition: opacity 1s ease;
+            width: 17vh;
+            height: 17vh;
+            border: 2px solid #889E73;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-text.hidden {
+            opacity: 0;
+        }
+
+        .scroll-arrows {
+            position: fixed;
+            top: calc(64% );
+            left: 50%;
+            transform: translate(-50%, 0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3vw;
+        }
+
+        .scroll-arrows span {
+            line-height: .5;
+            width: calc(.5vw + 1.5vh);
+            height: calc(.5vw + 1.5vh);
+            border-left: 2px solid #889E73;
+            border-top: 2px solid #889E73;
+            transform: rotate(225deg);
+            animation: flash 1.5s infinite;
+        }
+        #scroll-arrows span:nth-child(2) {
+            animation-delay: .1s;
+        }
+        #scroll-arrows span:nth-child(3) {
+            animation-delay: .2s;
+        }
+        .scroll-arrows span:nth-child(1) {
+            animation-delay: .3s;
+        }
+
+        @keyframes flash {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .about-me {
+            opacity: 0;
+            transition: opacity 1s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5vh 10vw;
+            gap: 5vw;
+            background: #FEF9E1; /* Removed gradient */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            margin-top: 200vh; /* Position it after the quote */
+        }
+
+        .about-me.visible {
+            opacity: 1;
+        }
+
+        .about-me img {
+            width: 20vw;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-me .description {
+            max-width: 50%;
+            font-family: 'Raleway', serif;
+            text-align: left;
+        }
+
+        .about-me .description h2 {
+            font-size: calc(2vh + 2vw);
+            color: #A31D1D;
+            margin-bottom: 2vh;
+        }
+
+        .about-me .description p {
+            font-size: calc(1.5vh + 1vw);
+            color: #556B2F;
+            line-height: 1.6;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3vh;
+            overflow: hidden; /* Hide overflowing content */
+            padding: 2vh 0;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 8vw;
+            animation: rotate 20s linear infinite; /* Continuous rotation */
+            will-change: transform; /* Optimize animation performance */
+        }
+
+        .carousel img {
+            width: auto;
+            height: 4vw; /* Maintain aspect ratio by setting height */
+            transition: transform 0.3s ease;
+        }
+
+        .carousel img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%); /* Seamless looping */
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -149,6 +325,44 @@
         <path d="M9.85505 9.29137L4.01697 15.1295C3.62645 15.52 3.62644 16.1531 4.01697 16.5437L5.61172 18.1384C6.00224 18.5289 6.63541 18.5289 7.02593 18.1384L12.864 12.3003C13.2545 11.9098 13.8877 11.9098 14.2782 12.3003L15.2782 13.3003C15.8927 13.9148 16.9447 13.5069 16.9842 12.6387L17.2911 5.90876C17.3179 5.32115 16.8342 4.83745 16.2466 4.86425L9.51667 5.17114C8.64847 5.21073 8.24057 6.26267 8.85511 6.87721L9.85506 7.87715C10.2456 8.26768 10.2456 8.90084 9.85505 9.29137Z" fill="#FEF9E1"/>
     </svg>
     
+    <div class="quote" id="quote">"In the middle of every difficulty lies opportunity." <span id="redsayer"> - Albert Einstein</span></div>
+    <div class="scroll-text" id="scrollText">Scroll</div>
+    <div class="scroll-arrows">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="about-me" id="aboutMe">
+        <img src="https://i.ibb.co/KcX3MNYN/Chat-GPT-Image-Apr-29-2025-04-00-11-PM.png" alt="My Picture">
+        <div class="description">
+            <h2>About Me</h2>
+            <p>Hi, I'm a 14-year-old coder passionate about technology and programming. I specialize in Python, Machine Learning, Artificial Intelligence, HTML, CSS, and JavaScript. I love solving problems and creating innovative projects that make a difference.</p>
+        </div>
+    </div>
+
+    <div class="carousel">
+        <div class="carousel-track">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg" alt="Flask">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="TensorFlow">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
+        </div>
+        <div class="carousel-track" style = "position: absolute; left: 93.3%;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg" alt="Flask">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="TensorFlow">
+            <img src="https://upload.wikimedia.org/wikipedia/en/c/cb/Raspberry_Pi_Logo.svg" alt="Raspberry Pi">
+        </div>
+    </div>
     
     <script>
 
@@ -160,7 +374,39 @@
             blurElement.style.top = `${clientY}px`;
         });
 
+        const quoteElement = document.getElementById('quote');
+        const titleElement = document.querySelector('.title');
+        const scrollTextElement = document.getElementById('scrollText');
+        const aboutMeElement = document.getElementById('aboutMe');
 
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const triggerPosition = window.innerHeight * 0.3;
+            const quoteFadeOutPosition = window.innerHeight * 1.2;
+            const aboutMeTriggerPosition = window.innerHeight * 1.5;
+
+            if (scrollPosition > triggerPosition) {
+                titleElement.classList.add('hidden');
+                quoteElement.classList.add('visible');
+                scrollTextElement.classList.add('hidden');
+                document.querySelector('.scroll-arrows').style.opacity = '0';
+            } else {
+                titleElement.classList.remove('hidden');
+                quoteElement.classList.remove('visible');
+                scrollTextElement.classList.remove('hidden');
+                document.querySelector('.scroll-arrows').style.opacity = '1';
+            }
+
+            if (scrollPosition > quoteFadeOutPosition) {
+                quoteElement.classList.remove('visible');
+            }
+
+            if (scrollPosition > aboutMeTriggerPosition) {
+                aboutMeElement.classList.add('visible');
+            } else {
+                aboutMeElement.classList.remove('visible');
+            }
+        });
         
     </script>
 </body>

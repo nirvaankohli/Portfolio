@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mouse Blur and Expanding Line Effect</title>
+    <title>Home</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=code" />
     <style>
         
@@ -163,7 +164,27 @@
     transform: translate(50%, 0%);
     
     top: calc(110vh + 12.5vw);
-    height: 300vh;
+    height: 175vh;
+}
+#more-works-button {
+    position: absolute;
+    bottom: 0vh;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-color: #A31D1D;
+    color: #fffcea;
+    font-family: 'Raleway', serif;
+    font-size: calc(1vh + 1vw);
+    font-weight: 600;
+    padding: 1vh 4vw;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+#more-works-button:hover {
+    background-color: #A94A4A;
+    transform: translate(-50%, -0.5vh);
 }
 #portfolio-image {
 
@@ -423,7 +444,7 @@
     <nav class="navMenu">
         <a href="">Home</a>
         <a href="works">Works</a>
-        <a href="#">About</a>
+        <a href="/about">About</a>
         
     </nav>
     <svg width="9vh" height="9vh" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" id = "logo">
@@ -453,7 +474,10 @@
         <text text-anchor="middle" x="50" y="15" font-size="clamp(.5vh, calc(3vh - .5vw), 9vh)" fill="#FEF9E1" fill-opacity="1" xml:space="preserve" style="fill:none;stroke:#A31D1D;stroke-width:.2;">WORKS</text>
         <text text-anchor="middle" x="50" y="15" font-size="clamp(.5vh, calc(3vh - .5vw), 9vh)" fill="url(#wave)"  fill-opacity="1">WORKS</text>
       </svg>
-      <div id = "line"><div class="project-dot"></div></div>
+      <div id="line">
+        <div class="project-dot"></div>
+        <div id="more-works-button" onclick="loadMoreWorks()">More Works</div>
+      </div>
       <div id="flipzai">
         <div class="project-title" id="flipz-title">FLIPZ.AI</div>
         <div class="project-subtitle">Generate A.I Flashcards</div>
@@ -473,9 +497,7 @@
       <img id = "portfolio-image" src = "https://hc-cdn.hel1.your-objectstorage.com/s/v3/cdf27ed223bd72624dad8ba21d382b015f804608_flipzai__4_.png">
       <img id = "flipzai-image" src="https://cloud-fq829dury-hack-club-bot.vercel.app/0flipzai.png">
       
-        
-→
-    
+            
 
     <script>
         const blurElement = document.getElementById('blur');
@@ -523,6 +545,10 @@
             }
 
             requestAnimationFrame(animationScroll);
+        }
+
+        function loadMoreWorks() {
+            window.location.href = "/works";
         }
         
         
